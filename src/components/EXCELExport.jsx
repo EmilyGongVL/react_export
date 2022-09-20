@@ -1,19 +1,13 @@
-import { downloadExcel } from "react-export-table-to-excel";
+import * as XLSX from 'xlsx'
 
-
-// Excel export function
 export default function EXCELExport(props) {
-  function handleDownloadExcel() {
-    downloadExcel({
-      fileName: "react_excel",
-      sheet: "sheet 1",
-      tablePayload: {
-        header: props.header,
-        body: props.body,
-      },
-    });
-  }
+const exportToExcel = () => {
+  const wb = XLSX.utils.book_new(),
+  ws = XLSX.utils.aoa_to_sheet(props.data);
+  XLSX.utils.book_append_sheet(wb, ws, "MySheet1");
+  XLSX.writeFile(wb, "MyExcel.xlsx");
+}
   return (
-    <button onClick={handleDownloadExcel}> EXCEL EXPORT</button>
+    <button onClick={exportToExcel}>Excel</button>
   )
 }
