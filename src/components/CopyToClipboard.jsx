@@ -1,7 +1,6 @@
 import React from 'react'
 
 export default function CopyToClipboard(props) {
-  //Clipboard
 const copyToClipboard = async() => {
   try {
     await navigator.clipboard.writeText(props.data)

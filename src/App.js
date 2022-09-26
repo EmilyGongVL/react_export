@@ -6,11 +6,11 @@ import CSVExport from './components/CSVExport';
 import EXCELExport from './components/EXCELExport';
 import ReactToPrint from 'react-to-print';
 import CopyToClipboard from './components/CopyToClipboard';
+import PDFExportPrint from './components/PDFExportPrint';
 
 const header = ["ID", "Name", "Type", "Dob", "Mobile", "Email"];
 const body = data.map((i) => {return i.items})
 const dataArray = [header, ...body];
-
 function App() {
   const componentRef = useRef();
   return (
@@ -27,6 +27,7 @@ function App() {
             content={() => componentRef.current}
           />
           <CopyToClipboard data={dataArray}/>
+          <PDFExportPrint heading={header} data={data}/>
         </div>
         <Table ref={componentRef} heading={header} data={data}/>
       </header>
